@@ -1,0 +1,8 @@
+{
+  "_links": {
+    "self": {"href": "{{ site }}"},
+    "menu": {"href": "{{ site }}/menu"},
+    "beertype": {"href": "{{ site }}/beertype"},
+    "cart": {"href": "{{ site }}/cart"}
+  }
+}

@@ -11,7 +11,8 @@
      {% for type in beertypes %}
        {
          "_links": {
-           "self": {"href": "{{ site }}/beertype/{{ type }}"}
+           "self": {"href": "{{ site }}/beertype/{{ type }}"},
+           "beer": {"href": "{{ site }}/beertype/{{ type }}/beer"}
          },
          "id": "{{ type }}"
        } {% if not loop.last %},{% endif %}

@@ -21,4 +21,9 @@ return function(Application $app, array $config) {
             return $app['problem'](404, ['title' => 'Beer not found']);
         return $app['twig']->render('beer/resource.json', $beer);
     });
+
+    $app->post('/beer/{id}/order' , function(Application $app, Request $request, $id) {
+        $resp = array_merge($request->request->all(), ['beer' => $id]);
+        return $app->json($resp);
+    });
 };

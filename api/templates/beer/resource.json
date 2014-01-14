@@ -1,10 +1,12 @@
 {
   "_links": {
     "self": {"href": "{{ site }}/beer/{{ _id }}"},
-    "beertype": {"href":"{{ site }}/beertype/{{ beertype }}" }
+    "beertype": {"href":"{{ site }}/beertype/{{ beertype }}" },
+    "order": {"href": "{{ site }}/beer/{{ _id }}/order" }
   },
   "id": "{{ _id }}",
   "name": "{{ name }}",
   "abv": "{{ abv }}",
-  "brewer": "{{ brewer }}"
+  "brewer": "{{ brewer }}",
+  "price": "{{ price }}"
 }
