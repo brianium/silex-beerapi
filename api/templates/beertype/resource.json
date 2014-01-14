@@ -1,8 +1,26 @@
 {
   "_links": {
-     "self": {"href": "{{ site }}/beertypes/{{ _id }}"},
-     "menu": {"href": "{{ site }}/menus/{{ menu }}" }
+     "self": {"href": "{{ site }}/beertype/{{ _id }}"},
+     "menu": {"href": "{{ site }}/menu/{{ menu }}" },
+     "beer": {"href": "{{ site }}/beertype/{{ _id }}/beer" }
    },
    "id": "{{ _id }}",
    "name": "{{ name }}"
+   {% if beers is defined %},
+   "_embedded": {
+     "beer":[
+     {% for beer in beers %}
+       {
+         "_links": {
+           "self": {"href": "{{ site }}/beer/{{ beer._id }}"}
+         },
+         "id": "{{ beer._id }}",
+         "name": "{{ beer.name }}",
+         "abv": "{{ beer.abv }}",
+         "brewer": "{{ beer.brewer }}"
+       } {% if not loop.last %},{% endif %}
+     {% endfor %}
+     ]
+   }
+   {% endif %}
 }

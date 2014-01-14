@@ -12,21 +12,21 @@ use mongo\connection as mongo;
 use beertype\transform as type;
 
 return function(Application $app, array $config) {
-    $db = mongo\db($config['mongo']);
-
-    $app->get('/menus', function(Request $request) use ($db, $app) {
-        $menus = collection\collection($request, $db->menus, 30, '/menus');
+    $db = $app['db'];
+ 
+    $app->get('/menu', function(Request $request) use ($db, $app) {
+        $menus = collection\collection($request, $db->menus, 30, '/menu');
         return $app['twig']->render('menu/collection.json', $menus);
     });
 
-    $app->get('/menus/{id}', function(Application $app, $id) use ($db) {
+    $app->get('/menu/{id}', function(Application $app, $id) use ($db) {
         $menu = $db->menus->findOne(['_id' => new \MongoId($id)]);
         return (!$menu) 
             ? $app['problem'](404, ['title' => 'Menu not found'])
             : $app['twig']->render('menu/resource.json', $menu);        
     });
 
-    $app->put('/menus/{id}', function(Application $app, Request $request, $id) use ($db) {
+    $app->put('/menu/{id}', function(Application $app, Request $request, $id) use ($db) {
         $status = $db->menus->update(
             ['_id' => new \MongoId($id)],
             ['$set' => ['name' => $request->request->get('name')]]
@@ -36,18 +36,18 @@ return function(Application $app, array $config) {
             : $app['problem'](404, ['title' => 'Menu not found']);
     });
 
-    $app->delete('/menus/{id}', function($id) use ($db) {
+    $app->delete('/menu/{id}', function($id) use ($db) {
         $db->menus->remove(['_id' => new \MongoId($id)]);
         return new Response(null, 204);
     });
 
-    $app->post('/menus', function(Request $request) use ($db, $app) {
+    $app->post('/menu', function(Request $request) use ($db, $app) {
         $menu = transform\fromRequest($request);
         $db->menus->insert($menu);
         return $app['twig']->render('menu/resource.json', $menu);        
     });
 
-    $app->post('/menus/{id}/beertypes', function(Application $app, Request $request, $id) use ($db) {
+    $app->post('/menu/{id}/beertype', function(Application $app, Request $request, $id) use ($db) {
         $menuId = new \MongoId($id);
         $beertype = type\fromRequest($request);
         $beertype['menu'] = $menuId;
@@ -61,9 +61,9 @@ return function(Application $app, array $config) {
             : $app['problem'](404, ['title' => 'Menu not found']);
     });
 
-    $app->get('/menus/{id}/beertypes', function(Application $app, Request $request, $id) use ($db) {
+    $app->get('/menu/{id}/beertype', function(Application $app, Request $request, $id) use ($db) {
         $cursor = $db->beertypes->find(['menu' => new \MongoId($id)]);
-        $types = collection\collection($request, $cursor, 30, '/menus/' . $id . '/beertypes');
+        $types = collection\collection($request, $cursor, 30, '/menu/' . $id . '/beertype');
         return $app['twig']->render('beertype/collection.json', $types); 
     });
 };
