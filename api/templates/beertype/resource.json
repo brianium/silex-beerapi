@@ -10,15 +10,7 @@
    "_embedded": {
      "beer":[
      {% for beer in beers %}
-       {
-         "_links": {
-           "self": {"href": "{{ site }}/beer/{{ beer._id }}"}
-         },
-         "id": "{{ beer._id }}",
-         "name": "{{ beer.name }}",
-         "abv": "{{ beer.abv }}",
-         "brewer": "{{ beer.brewer }}"
-       } {% if not loop.last %},{% endif %}
+       {{ include('beer/resource.json', beer) }}{% if not loop.last %},{% endif %}
      {% endfor %}
      ]
    }

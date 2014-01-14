@@ -1,0 +1,12 @@
+{
+  "_links": {
+    "self": {"href": "{{ site }}/beertype/{{ beertype }}/beer"} 
+  },
+  "_embedded": {
+     "beer": [
+	{% for beer in beers %}
+	{{ include('beer/resource.json', beer) }}{% if not loop.last %}, {% endif %}
+	{% endfor %}
+     ]
+   } 
+}

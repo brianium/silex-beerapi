@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use menu\transform as transform;
 use mongo\collection as collection;
-use mongo\connection as mongo;
 use beertype\transform as type;
 
 return function(Application $app, array $config) {

@@ -7,7 +7,6 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use mongo\collection as collection;
-use mongo\connection as mongo;
 use beertype\transform as type;
 use beer\transform as beer;
 
@@ -67,5 +66,11 @@ return function(Application $app, array $config) {
         return ($status['updatedExisting'])
             ? $app['twig']->render('beertype/resource.json', $db->beertypes->findOne(['_id' => $typeId]))
             : $app['problem'](404, ['title' => 'Beer type not found']); 
+    });
+
+    $app->get('/beertype/{id}/beer', function(Application $app, Request $request, $id) use ($db) {
+        $cursor = $db->beertypes->findOne(['_id' => new \MongoId($id)]);
+        $beers = $cursor["beers"];
+        return $app['twig']->render('beer/collection.json', ['beers' => $beers, 'beertype' => $id]);
     });
 };

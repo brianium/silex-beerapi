@@ -1,0 +1,10 @@
+{
+  "_links": {
+    "self": {"href": "{{ site }}/beer/{{ _id }}"},
+    "beertype": {"href":"{{ site }}/beertype/{{ beertype }}" }
+  },
+  "id": "{{ _id }}",
+  "name": "{{ name }}",
+  "abv": "{{ abv }}",
+  "brewer": "{{ brewer }}"
+}

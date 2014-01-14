@@ -27,5 +27,6 @@ $load('middleware/json.php', $app, $config);
 //routes
 $load('routes/menu.php', $app, $config);
 $load('routes/beertype.php', $app, $config);
+$load('routes/beer.php', $app, $config);
 
 $app->run();
