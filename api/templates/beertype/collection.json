@@ -1,0 +1,13 @@
+{
+  "_links": {
+    {{ include('collection/page-links.json') }}
+  },
+  {{ include('collection/page-data.json') }},
+  "_embedded": {
+     "beertype": [
+	{% for beertype in results %}
+	{{ include('beertype/resource.json', beertype) }}{% if not loop.last %}, {% endif %}
+	{% endfor %}
+     ]
+   } 
+}

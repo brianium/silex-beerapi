@@ -1,0 +1,8 @@
+    "self": {"href": "{{ site }}{{ path }}"}
+    {% if next_page_href %}
+    ,"next": {"href": "{{ site }}{{ next_page_href }}"}
+    {% endif %}
+    {% if prev_page_href %}
+    ,"prev": {"href": "{{ site }}{{ prev_page_href}}"}
+    {% endif %}
+    ,"last": {"href": "{{ site }}{{ last_page_href }}" }

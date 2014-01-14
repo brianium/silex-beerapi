@@ -1,0 +1,15 @@
+{
+    "name": "brianium/grphpdev-hypermedia",
+    "description": "Hypermedia demonstration using Silex for GrPHPDev Meetup Group",
+    "require": {
+        "silex/silex": "1.1.*",
+	"twig/twig": "1.*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Brian Scaturro",
+            "email": "scaturrob@gmail.com"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+  "_links": {
+     "self": {"href": "{{ site }}/menus/{{ _id }}"},
+     "beertype": {"href": "{{ site }}/menus/{{ _id }}/beertypes"}
+   },
+   "id": "{{ _id }}",
+   "name": "{{ name }}"
+   {% if beertypes is defined %},
+   "_embedded": {
+     "beertype":[
+     {% for type in beertypes %}
+       {
+         "_links": {
+           "self": {"href": "{{ site }}/beertypes/{{ type }}"}
+         },
+         "id": "{{ type }}"
+       } {% if not loop.last %},{% endif %}
+     {% endfor %}
+     ]
+   }
+   {% endif %}
+}

@@ -1,0 +1,13 @@
+{
+  "_links": {
+    {{ include('collection/page-links.json') }}
+  },
+  {{ include('collection/page-data.json') }},
+  "_embedded": {
+     "menu": [
+	{% for menu in results %}
+	{{ include('menu/resource.json', menu) }}{% if not loop.last %}, {% endif %}
+	{% endfor %}
+     ]
+   } 
+}
