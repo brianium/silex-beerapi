@@ -23,6 +23,7 @@ $load('services/problem.php', $app, $config);
 
 //middleware
 $load('middleware/json.php', $app, $config);
+$load('middleware/access.php', $app, $config);
 
 //routes
 $load('routes/index.php', $app, $config);
