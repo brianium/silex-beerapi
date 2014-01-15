@@ -1,3 +1,6 @@
 [submodule "hal-browser"]
 	path = hal-browser
 	url = git@github.com:mikekelly/hal-browser.git
+[submodule "api/explorer"]
+	path = api/explorer
+	url = git@github.com:mikekelly/hal-browser.git

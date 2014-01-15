@@ -43,7 +43,7 @@ return function(Application $app, array $config) {
     $app->post('/menu', function(Request $request) use ($db, $app) {
         $menu = transform\fromRequest($request);
         $db->menus->insert($menu);
-        return $app['twig']->render('menu/resource.json', $menu);        
+        return new Response($app['twig']->render('menu/resource.json', $menu), 201);        
     });
 
     $app->post('/menu/{id}/beertype', function(Application $app, Request $request, $id) use ($db) {

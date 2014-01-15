@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 return function(Application $app, array $config) {
 
-    $app->get('/', function(Application $app) use ($db) {
+    $app->get('/', function(Application $app) {
         return $app['twig']->render('index.json');
     });
 
